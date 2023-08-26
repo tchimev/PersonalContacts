@@ -4,6 +4,6 @@
     {
         Task<int> SaveChangesAsync();
 
-        IRepository<T> Repository<T>() where T : IBaseEntity;
+        IQueryRepository<T> Repository<T>() where T : IBaseEntity;
     }
 }

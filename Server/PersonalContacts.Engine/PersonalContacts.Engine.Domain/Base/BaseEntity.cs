@@ -4,6 +4,6 @@ namespace PersonalContacts.Engine.Domain.Base
 {
     public abstract class BaseEntity<TKey> : IBaseEntity
     {
-        public TKey Id { get; internal set; }
+        public TKey Id { get; private set; }
     }
 }

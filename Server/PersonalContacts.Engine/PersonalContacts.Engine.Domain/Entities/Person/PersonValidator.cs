@@ -9,9 +9,9 @@ namespace PersonalContacts.Engine.Domain.Entities.Person
         {
             RuleFor(x => x.FirstName).NotEmpty();
             RuleFor(x => x.Surname).NotEmpty();
-            RuleFor(x => x.DoB).NotEmpty().Must(BeValidDoB).WithMessage("Date of birth is not valid.");
+            RuleFor(x => x.BirthDate).NotEmpty().Must(BeValidDoB).WithMessage("Date of birth is not valid.");
             RuleFor(x => x.PhoneNumber).NotEmpty().Must(BeValidPhoneNumber).WithMessage("Phone number must contain only numbers.");
-            RuleFor(x => x.IBAN).NotEmpty().Must(BeValidIBAN).WithMessage("IBAN must contain numbers and letters only.");
+            RuleFor(x => x.Iban).NotEmpty().Must(BeValidIBAN).WithMessage("IBAN must contain numbers and letters only.");
             RuleFor(x => x.Address.Country).NotEmpty().When(x => x.Address != null);
             RuleFor(x => x.Address.City).NotEmpty().When(x => x.Address != null);
             RuleFor(x => x.Address.Street).NotEmpty().When(x => x.Address != null);

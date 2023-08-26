@@ -7,12 +7,12 @@
         public string Street { get; private set; }
         public string ZipCode { get; private set; }
 
-        public Address(string country, string city, string street, string zipcode)
+        public Address(string country, string city, string street, string zipCode)
         {
             Country = country;
             City = city;
             Street = street;
-            ZipCode = zipcode;
+            ZipCode = zipCode;
         }
     }
 }
