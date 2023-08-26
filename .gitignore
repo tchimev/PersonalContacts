@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Server/.vs
+/Server/PersonalContacts.Engine/.vs/PersonalContacts.Engine
+/Server/PersonalContacts.Engine/PersonalContacts.Engine/obj
+/Server/PersonalContacts.Engine/PersonalContacts.Engine/bin/Debug/net6.0
+/Server/PersonalContacts.Engine/PersonalContacts.Engine/Properties
+/Server/PersonalContacts.Engine/PersonalContacts.Engine.ApiModels
+/Server/PersonalContacts.Engine/PersonalContacts.Engine.Data
+/Server/PersonalContacts.Engine/PersonalContacts.Engine.Domain
+/Server/PersonalContacts.Engine/PersonalContacts.Engine.Services
+/Server/PersonalContacts.Engine/.vs/ProjectEvaluation
