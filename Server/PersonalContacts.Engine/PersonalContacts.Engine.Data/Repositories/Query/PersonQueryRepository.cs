@@ -3,9 +3,9 @@ using PersonalContacts.Engine.Domain.Entities.Person;
 
 namespace PersonalContacts.Engine.Data.Repositories.Query
 {
-    public class PersonCommandRepository : BaseCommandRepository<Person>, IPersonQueryRepository
+    public class PersonQueryRepository : BaseQueryRepository<Person>, IPersonQueryRepository
     {
-        public PersonCommandRepository(EFContext dbContext) : base(dbContext)
+        public PersonQueryRepository(EFContext dbContext) : base(dbContext)
         {
         }
     }

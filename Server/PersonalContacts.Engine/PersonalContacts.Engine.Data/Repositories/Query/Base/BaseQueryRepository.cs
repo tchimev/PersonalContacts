@@ -5,11 +5,11 @@ using System.Linq.Expressions;
 
 namespace PersonalContacts.Engine.Data.Repositories.Query.Base
 {
-    public class BaseCommandRepository<T> : IQueryRepository<T> where T : BaseEntity<int>
+    public class BaseQueryRepository<T> : IQueryRepository<T> where T : BaseEntity<int>
     {
         private readonly DbSet<T> _dbSet;
 
-        public BaseCommandRepository(EFContext dbContext)
+        public BaseQueryRepository(EFContext dbContext)
         {
             _dbSet = dbContext.Set<T>();
         }
