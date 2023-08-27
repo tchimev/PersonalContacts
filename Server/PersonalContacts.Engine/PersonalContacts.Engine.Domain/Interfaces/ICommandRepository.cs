@@ -8,6 +8,6 @@
 
         Task<bool> DeleteAsync(T entity);
 
-        Task CommitAsync();
+        Task<int> CommitAsync();
     }
 }

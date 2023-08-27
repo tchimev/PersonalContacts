@@ -21,9 +21,9 @@ namespace PersonalContacts.Engine.Data.Repositories.Command.Base
             return entity;
         }
 
-        public async Task CommitAsync()
+        public async Task<int> CommitAsync()
         {
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync();
         }
 
         public Task<bool> DeleteAsync(T entity)
