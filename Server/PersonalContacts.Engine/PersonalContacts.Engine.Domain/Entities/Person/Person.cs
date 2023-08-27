@@ -3,7 +3,7 @@ using PersonalContacts.Engine.Domain.ValueObjects;
 
 namespace PersonalContacts.Engine.Domain.Entities.Person
 {
-    public sealed class Person : BaseEntity<int>
+    public class Person : BaseEntity<int>
     {
         public string FirstName { get; private set; }
         public string Surname { get; private set; }

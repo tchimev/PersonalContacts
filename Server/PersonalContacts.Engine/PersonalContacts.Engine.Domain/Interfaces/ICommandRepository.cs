@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace PersonalContacts.Engine.Domain.Interfaces
+﻿namespace PersonalContacts.Engine.Domain.Interfaces
 {
     public interface ICommandRepository<T> where T : IBaseEntity
     {
@@ -9,5 +7,7 @@ namespace PersonalContacts.Engine.Domain.Interfaces
         Task<T> UpdateAsync(T entity);
 
         Task<bool> DeleteAsync(T entity);
+
+        Task CommitAsync();
     }
 }
