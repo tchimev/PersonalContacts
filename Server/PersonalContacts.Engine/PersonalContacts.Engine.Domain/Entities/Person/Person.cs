@@ -14,20 +14,28 @@ namespace PersonalContacts.Engine.Domain.Entities.Person
 
         private Person() { }
 
-        public Person(
+        public static Person CreateNew(
             string firstName,
             string surname,
             DateTime birthDate,
             Address address,
             string phoneNumber,
-            string iban)
+            string iban,
+            IPersonValidator validator)
         {
-            FirstName = firstName;
-            Surname = surname;
-            BirthDate = birthDate;
-            Address = address;
-            PhoneNumber = phoneNumber;
-            Iban = iban;
+            var person = new Person
+            {
+                FirstName = firstName,
+                Surname = surname,
+                BirthDate = birthDate,
+                Address = address,
+                PhoneNumber = phoneNumber,
+                Iban = iban
+            };
+
+            validator.ValidateEntity(person);
+            
+            return person;
         }
 
         public void Update(
@@ -36,7 +44,8 @@ namespace PersonalContacts.Engine.Domain.Entities.Person
             DateTime birthDate,
             Address address,
             string phoneNumber,
-            string iban)
+            string iban,
+            IPersonValidator validator)
         {
             FirstName = firstName;
             Surname = surname;
@@ -44,11 +53,29 @@ namespace PersonalContacts.Engine.Domain.Entities.Person
             BirthDate = birthDate;
             PhoneNumber = phoneNumber;
             Iban = iban;
+
+            validator.ValidateEntity(this);
         }
 
-        public void AddAddress(Address address)
+        public void AddAddress(Address address, IPersonValidator validator)
         {
             Address = address;
+
+            validator.ValidateEntityProperty(this, nameof(Address));
+        }
+
+        public void AddIBAN(string iban, IPersonValidator validator)
+        {
+            Iban = iban;
+
+            validator.ValidateEntityProperty(this, nameof(Iban));
+        }
+
+        public void AddPhoneNumber(string phoneNumber, IPersonValidator validator)
+        {
+            PhoneNumber = phoneNumber;
+
+            validator.ValidateEntityProperty(this, nameof(PhoneNumber));
         }
     }
 }

@@ -26,7 +26,7 @@ namespace PersonalContacts.Engine.Handlers.Person.CreatePerson
         {
             _modelValidator.ValidateAndThrow(request.PersonModel);
 
-            var person = new Domain.Entities.Person.Person(
+            var person = Domain.Entities.Person.Person.CreateNew(
                 request.PersonModel.FirstName,
                 request.PersonModel.Surname,
                 request.PersonModel.BirthDate,
@@ -37,10 +37,8 @@ namespace PersonalContacts.Engine.Handlers.Person.CreatePerson
                     request.PersonModel.ZipCode
                     ),
                 request.PersonModel.PhoneNumber,
-                request.PersonModel.Iban
-                );
-
-            _entityValidator.ValidateAndThrow(person);
+                request.PersonModel.Iban,
+                _entityValidator);
 
             var result = await _personCommandRepository.AddAsync(person);
             await _personCommandRepository.CommitAsync();

@@ -1,8 +1,8 @@
-﻿using FluentValidation;
+﻿using PersonalContacts.Engine.Domain.Interfaces;
 
 namespace PersonalContacts.Engine.Domain.Entities.Person
 {
-    public interface IPersonValidator : IValidator<Person>
+    public interface IPersonValidator : IEntityValidator<Person>
     {
     }
 }
