@@ -21,53 +21,69 @@ namespace PersonalContacts.Engine.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<PersonModel>> GetPersons()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetPersons()
         {
             var result = await _mediator.Send(new GetPersonListRequest());
 
-            return result.PersonList;
+            return Ok(result.PersonList);
         }
 
         [HttpGet("{id}")]
-        public async Task<PersonModel> GetPersonById(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetPersonById(int id)
         {
             var result = await _mediator.Send(new GetPersonByIdRequest() 
             { 
                 PersonId = id
             });
 
-            return result.PersonModel;
+            return Ok(result.PersonModel);
         }
 
         [HttpPost]
-        public async Task<PersonModel> CreatePerson([FromBody] PersonModel person)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> CreatePerson([FromBody] PersonModel person)
         {
             var result = await _mediator.Send(new CreatePersonRequest 
             {
                 PersonModel = person
             });
 
-            return result.PersonModel;
+            return Ok(result.PersonModel);
         }
 
         [HttpPut]
-        public async Task<PersonModel> UpdatePerson([FromBody] PersonModel person)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UpdatePerson([FromBody] PersonModel person)
         {
             var result = await _mediator.Send(new UpdatePersonRequest
             {
                 PersonModel = person
             });
 
-            return result.PersonModel;
+            return Ok(result.PersonModel);
         }
 
         [HttpDelete("{id}")]
-        public async Task DeletePerson(int id)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> DeletePerson(int id)
         {
             await _mediator.Send(new DeletePersonRequest()
             {
                 PersonId = id
             });
+
+            return NoContent();
         }
     }
 }
