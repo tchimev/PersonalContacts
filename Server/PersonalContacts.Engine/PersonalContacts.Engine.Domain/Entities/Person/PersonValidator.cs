@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
+using PersonalContacts.Engine.Domain.Base;
 using System.Text.RegularExpressions;
 
 namespace PersonalContacts.Engine.Domain.Entities.Person
 {
-    public class PersonValidator : AbstractValidator<Person>
+    public class PersonValidator : BaseEntityValidator<Person>, IPersonValidator
     {
         public PersonValidator() 
         {
