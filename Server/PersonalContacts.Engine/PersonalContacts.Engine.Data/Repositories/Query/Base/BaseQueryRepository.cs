@@ -23,5 +23,10 @@ namespace PersonalContacts.Engine.Data.Repositories.Query.Base
         {
             return _dbSet.Where(expression).ToListAsync();
         }
+
+        public Task<List<T>> ListAsync()
+        {
+            return _dbSet.ToListAsync();
+        }
     }
 }

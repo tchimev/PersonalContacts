@@ -1,12 +1,13 @@
 ﻿using FluentValidation;
 
-namespace PersonalContacts.Engine.Handlers.Person.CreatePerson
+namespace PersonalContacts.Engine.Handlers.Person.UpdatePerson
 {
-    public class CreatePersonValidator : AbstractValidator<CreatePersonRequest>, ICreatePersonValidator
+    public class UpdatePersonValidator : AbstractValidator<UpdatePersonRequest>, IUpdatePersonValidator
     {
-        public CreatePersonValidator() 
+        public UpdatePersonValidator() 
         {
             RuleFor(x => x.PersonModel).NotEmpty();
+            RuleFor(x => x.PersonModel.Id).NotEmpty();
             RuleFor(x => x.PersonModel.FirstName).NotEmpty().MaximumLength(50);
             RuleFor(x => x.PersonModel.Surname).NotEmpty().MaximumLength(50);
             RuleFor(x => x.PersonModel.BirthDate).NotEmpty();
@@ -18,5 +19,5 @@ namespace PersonalContacts.Engine.Handlers.Person.CreatePerson
         }
     }
 
-    public interface ICreatePersonValidator : IValidator<CreatePersonRequest> { }
+    public interface IUpdatePersonValidator : IValidator<UpdatePersonRequest> { }
 }

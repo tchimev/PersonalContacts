@@ -3,17 +3,17 @@ using MediatR;
 using PersonalContacts.Engine.ApiModels;
 using PersonalContacts.Engine.Domain.Entities.Person;
 
-namespace PersonalContacts.Engine.Handlers.Person.CreatePerson
+namespace PersonalContacts.Engine.Handlers.Person.UpdatePerson
 {
-    public class CreatePersonHandler : IRequestHandler<CreatePersonRequest, CreatePersonResponse>
+    public class UpdatePersonHandler : IRequestHandler<UpdatePersonRequest, UpdatePersonResponse>
     {
         private readonly IPersonCommandRepository _personCommandRepository;
-        private readonly ICreatePersonValidator _modelValidator;
+        private readonly IUpdatePersonValidator _modelValidator;
         private readonly IPersonValidator _entityValidator;
 
-        public CreatePersonHandler(
+        public UpdatePersonHandler(
             IPersonCommandRepository personCommandRepository, 
-            ICreatePersonValidator modelValidator,
+            IUpdatePersonValidator modelValidator,
             IPersonValidator entityValidator)
         {
             _personCommandRepository = personCommandRepository
@@ -22,7 +22,7 @@ namespace PersonalContacts.Engine.Handlers.Person.CreatePerson
             _entityValidator = entityValidator ?? throw new ArgumentNullException(nameof(entityValidator));
         }
 
-        public async Task<CreatePersonResponse> Handle(CreatePersonRequest request, CancellationToken cancellationToken)
+        public async Task<UpdatePersonResponse> Handle(UpdatePersonRequest request, CancellationToken cancellationToken)
         {
             _modelValidator.ValidateAndThrow(request);
 
@@ -40,12 +40,12 @@ namespace PersonalContacts.Engine.Handlers.Person.CreatePerson
                 request.PersonModel.Iban,
                 _entityValidator);
 
-            var result = await _personCommandRepository.AddAsync(person).ConfigureAwait(false);
+            var result = await _personCommandRepository.UpdateAsync(person).ConfigureAwait(false);
             await _personCommandRepository.CommitAsync().ConfigureAwait(false);
 
-            if (result == null) throw new Exception("Cannot create Person.");
+            if (result == null) throw new Exception("Cannot update Person.");
 
-            return new CreatePersonResponse 
+            return new UpdatePersonResponse 
             {
                 PersonModel = new PersonModel
                 {

@@ -1,6 +1,5 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using PersonalContacts.Engine.ApiModels;
 using PersonalContacts.Engine.Data;
 using PersonalContacts.Engine.Data.Repositories.Command;
 using PersonalContacts.Engine.Data.Repositories.Query;
