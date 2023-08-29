@@ -8,16 +8,20 @@ namespace PersonalContacts.Engine.Handlers.Person.UpdatePerson
     public class UpdatePersonHandler : IRequestHandler<UpdatePersonRequest, UpdatePersonResponse>
     {
         private readonly IPersonCommandRepository _personCommandRepository;
+        private readonly IPersonQueryRepository _personQueryRepository;
         private readonly IUpdatePersonValidator _modelValidator;
         private readonly IPersonValidator _entityValidator;
 
         public UpdatePersonHandler(
             IPersonCommandRepository personCommandRepository, 
+            IPersonQueryRepository personQueryRepository, 
             IUpdatePersonValidator modelValidator,
             IPersonValidator entityValidator)
         {
             _personCommandRepository = personCommandRepository
                 ?? throw new ArgumentNullException(nameof(personCommandRepository));
+            _personQueryRepository = personQueryRepository
+                ?? throw new ArgumentNullException(nameof(personQueryRepository));
             _modelValidator = modelValidator ?? throw new ArgumentNullException(nameof(modelValidator));
             _entityValidator = entityValidator ?? throw new ArgumentNullException(nameof(entityValidator));
         }
@@ -26,7 +30,9 @@ namespace PersonalContacts.Engine.Handlers.Person.UpdatePerson
         {
             _modelValidator.ValidateAndThrow(request);
 
-            var person = Domain.Entities.Person.Person.CreateNew(
+            var person = await _personQueryRepository.GetAsync(p => p.Id == request.PersonModel.Id).ConfigureAwait(false);
+
+            person.Update(
                 request.PersonModel.FirstName,
                 request.PersonModel.Surname,
                 request.PersonModel.BirthDate,
