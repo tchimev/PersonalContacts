@@ -5,6 +5,9 @@ using PersonalContacts.Engine.Data.Repositories.Command;
 using PersonalContacts.Engine.Data.Repositories.Query;
 using PersonalContacts.Engine.Domain.Entities.Person;
 using PersonalContacts.Engine.Handlers.Person.CreatePerson;
+using PersonalContacts.Engine.Handlers.Person.DeletePerson;
+using PersonalContacts.Engine.Handlers.Person.GetPersonById;
+using PersonalContacts.Engine.Handlers.Person.UpdatePerson;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,8 +22,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(msc => msc.RegisterServicesFromAssemblyContaining<ICreatePersonValidator>());
-builder.Services.AddValidatorsFromAssemblyContaining<ICreatePersonValidator>();
-builder.Services.AddValidatorsFromAssemblyContaining<IPersonValidator>();
+builder.Services.AddScoped<ICreatePersonValidator, CreatePersonValidator>();
+builder.Services.AddScoped<IDeletePersonValidator, DeletePersonValidator>();
+builder.Services.AddScoped<IUpdatePersonValidator, UpdatePersonValidator>();
+builder.Services.AddScoped<IGetPersonByIdValidator, GetPersonByIdValidator>();
+builder.Services.AddScoped<IPersonValidator, PersonValidator>();
 builder.Services.AddScoped<IPersonCommandRepository, PersonCommandRepository>();
 builder.Services.AddScoped<IPersonQueryRepository, PersonQueryRepository>();
 
