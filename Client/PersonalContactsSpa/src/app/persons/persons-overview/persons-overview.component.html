@@ -1,1 +1,59 @@
-<p>persons-overview works!</p>
+<p-card>
+  <ng-template pTemplate="header">
+    <hr>
+    <p-button class="mx-2" routerLink="/person" label="New" styleClass="p-button-raised p-button-success" ></p-button>
+    <p-button class="mx-2" [routerLink]="['/person', selectedPerson?.id]" label="Edit" styleClass="p-button-raised" [disabled]="selectedPerson == null"></p-button>
+  </ng-template>
+  <p class="m-0">
+    <p-table
+      [value]="personList"
+      [paginator]="true"
+      [rows]="7"
+      [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      selectionMode="single" 
+      [(selection)]="selectedPerson" 
+      dataKey="id"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Full name</th>
+          <th>Birth date</th>
+          <th>Country</th>
+          <th>City</th>
+          <th>Street</th>
+          <th>Zip code</th>
+          <th>Phone</th>
+          <th>IBAN</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-person>
+        <tr [pSelectableRow]="person">
+          <td>{{ person.surname }}, {{ person.firstName }}</td>
+          <td>{{ person.birthDate | date : "dd/MM/yyyy" }}</td>
+          <td>{{ person.country }}</td>
+          <td>{{ person.city }}</td>
+          <td>{{ person.street }}</td>
+          <td>{{ person.zipCode }}</td>
+          <td>{{ person.phoneNumber }}</td>
+          <td>{{ person.iban }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+        <p-button
+          type="button"
+          icon="pi pi-plus"
+          styleClass="p-button-text"
+        ></p-button>
+      </ng-template>
+      <ng-template pTemplate="paginatorright">
+        <p-button
+          type="button"
+          icon="pi pi-cloud"
+          styleClass="p-button-text"
+        ></p-button>
+      </ng-template>
+    </p-table>
+  </p>
+</p-card>
