@@ -1,4 +1,4 @@
-export class Person {
+export interface IPerson {
     id: number;
     firstName: string;
     surname: string;
@@ -9,4 +9,9 @@ export class Person {
     city: string;
     street: string;
     zipCode: string;
+}
+
+export interface IPersonState {
+    persons: IPerson[];
+    isLoading: boolean;
 }

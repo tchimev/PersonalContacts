@@ -10,6 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { PersonStoreModule } from 'src/store/Person/person.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { ButtonModule } from 'primeng/button';
     ReactiveFormsModule,
     CardModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    StoreModule.forRoot(),
+    EffectsModule.forRoot(),
+    PersonStoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

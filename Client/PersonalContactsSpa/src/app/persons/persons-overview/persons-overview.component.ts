@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { Person } from 'src/models/person';
-import { PersonService } from 'src/services/person.service';
+import { IPerson } from 'src/store/Person/person.model';
+import { PersonService } from 'src/store/Person/person.service';
 
 @Component({
   selector: 'app-persons-overview',
@@ -9,8 +9,8 @@ import { PersonService } from 'src/services/person.service';
   styleUrls: ['./persons-overview.component.css']
 })
 export class PersonsOverviewComponent implements OnInit {
-  public personList: Person[];
-  public selectedPerson: Person;
+  public personList: IPerson[];
+  public selectedPerson: IPerson;
   
   constructor(private _personService: PersonService) { }
 
