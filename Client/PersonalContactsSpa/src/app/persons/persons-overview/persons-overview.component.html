@@ -4,9 +4,9 @@
     <p-button class="mx-2" routerLink="/person" label="New" styleClass="p-button-raised p-button-success" ></p-button>
     <p-button class="mx-2" [routerLink]="['/person', selectedPerson?.id]" label="Edit" styleClass="p-button-raised" [disabled]="selectedPerson == null"></p-button>
   </ng-template>
-  <p class="m-0">
+  <p class="m-0" *ngIf="!isLoading | async">
     <p-table
-      [value]="personList"
+      [value]="personList | async"
       [paginator]="true"
       [rows]="7"
       [showCurrentPageReport]="true"
