@@ -21,6 +21,6 @@ export class PersonsOverviewComponent implements OnInit {
     this.store.dispatch(getPersons());
 
     this.personList = this.store.pipe(select(selectPersonsList));
-    this.isLoading = this.store.pipe(select(selectPersonIsLoading))
+    this.isLoading = this.store.pipe(select(selectPersonIsLoading));
   }
 }

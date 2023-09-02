@@ -2,9 +2,9 @@
   <ng-template pTemplate="header">
     <hr>
     <p-button class="mx-2" routerLink="/person" label="New" styleClass="p-button-raised p-button-success" ></p-button>
-    <p-button class="mx-2" [routerLink]="['/person', selectedPerson?.id]" label="Edit" styleClass="p-button-raised" [disabled]="selectedPerson == null"></p-button>
+    <p-button class="mx-2" [routerLink]="selectedPerson ? ['/person', selectedPerson?.id] : null" label="Edit" styleClass="p-button-raised" [disabled]="selectedPerson == null"></p-button>
   </ng-template>
-  <p class="m-0" *ngIf="!isLoading | async">
+  <p class="m-0" *ngIf="!(isLoading | async)">
     <p-table
       [value]="personList | async"
       [paginator]="true"
