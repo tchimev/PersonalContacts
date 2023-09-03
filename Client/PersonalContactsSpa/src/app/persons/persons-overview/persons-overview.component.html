@@ -1,7 +1,9 @@
 <p-card>
+  <p-toast></p-toast>
   <ng-template pTemplate="header">
     <p-button class="mx-2" routerLink="/person" label="New" styleClass="p-button-raised p-button-success" ></p-button>
     <p-button class="mx-2" [routerLink]="selectedPerson ? ['/person', selectedPerson?.id] : null" label="Edit" styleClass="p-button-raised" [disabled]="selectedPerson == null"></p-button>
+    <p-button class="mx-2" label="Delete" (onClick)="deleteSelectedPerson()" styleClass="p-button-danger" [disabled]="selectedPerson == null"></p-button>
   </ng-template>
   <p class="m-0" *ngIf="!(isLoading | async)">
     <p-table
@@ -22,9 +24,9 @@
           <th>Country</th>
           <th>City</th>
           <th>Street</th>
-          <th>Zip code</th>
           <th>Phone</th>
           <th>IBAN</th>
+          <th>Zip code</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-person>
@@ -34,9 +36,9 @@
           <td>{{ person.country }}</td>
           <td>{{ person.city }}</td>
           <td>{{ person.street }}</td>
-          <td>{{ person.zipCode }}</td>
           <td>{{ person.phoneNumber }}</td>
           <td>{{ person.iban }}</td>
+          <td>{{ person.zipCode }}</td>
         </tr>
       </ng-template>
       <ng-template pTemplate="paginatorleft">
@@ -56,3 +58,4 @@
     </p-table>
   </p>
 </p-card>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

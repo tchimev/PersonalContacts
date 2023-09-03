@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
+import { MessageService } from 'primeng/api';
 import { createPerson, updatePerson } from 'src/store/Person/person.action';
 import {
   selectPersonById,
@@ -12,12 +13,13 @@ import {
   selector: 'app-person-add-edit',
   templateUrl: './person-add-edit.component.html',
   styleUrls: ['./person-add-edit.component.css'],
+  providers: [MessageService],
 })
 export class PersonAddEditComponent implements OnInit {
   public form = this._fb.group({
     firstName: ['', Validators.required],
     surname: ['', Validators.required],
-    birthDate: [new Date(), Validators.required],
+    birthDate: [new Date('1950-01-01'), Validators.required],
     phoneNumber: ['', Validators.required],
     iban: ['', Validators.required],
     street: ['', Validators.required],
@@ -29,10 +31,12 @@ export class PersonAddEditComponent implements OnInit {
   private _personId: number = 0;
 
   constructor(
-    private _fb: FormBuilder,
-    private _route: ActivatedRoute,
-    private _router: Router,
-    private readonly _store: Store
+    private readonly _fb: FormBuilder,
+    private readonly _route: ActivatedRoute,
+    private readonly _router: Router,
+    private readonly _store: Store,
+    private readonly _messageService: MessageService,
+    private readonly _ngZone: NgZone
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +48,7 @@ export class PersonAddEditComponent implements OnInit {
           .select(selectPersonById(this._personId))
           .subscribe((person) => {
             this.form.patchValue(person);
-            this.form.patchValue({birthDate: new Date(person?.birthDate)})
+            this.form.patchValue({ birthDate: new Date(person.birthDate.toString() + 'Z') });
           });
       }
     });
@@ -72,8 +76,18 @@ export class PersonAddEditComponent implements OnInit {
 
     this._store.pipe(select(selectPersonIsLoading)).subscribe((loading) => {
       if (!loading) {
-        this._router.navigate(['/']);
+        this.form.disable();
+        this._messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Person Saved',
+          life: 2000,
+        });
       }
     });
+  }
+
+  public onCloseMessage(): void {
+     this._ngZone.run(() => this._router.navigate(['/']));
   }
 }

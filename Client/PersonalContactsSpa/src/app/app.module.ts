@@ -16,6 +16,8 @@ import { PersonStoreModule } from 'src/store/Person/person.module';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PersonStoreModule,
     CalendarModule,
     InputTextModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ConfirmDialogModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
