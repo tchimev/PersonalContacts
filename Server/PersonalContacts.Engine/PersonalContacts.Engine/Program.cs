@@ -40,7 +40,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(builder => builder.AllowAnyOrigin());
+app.UseCors(builder => builder
+  .AllowAnyOrigin()
+  .AllowAnyHeader()
+  .AllowAnyMethod());
 
 app.UseHttpsRedirection();
 
