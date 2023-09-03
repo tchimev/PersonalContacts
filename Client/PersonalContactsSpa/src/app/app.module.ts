@@ -13,6 +13,9 @@ import { ButtonModule } from 'primeng/button';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { PersonStoreModule } from 'src/store/Person/person.module';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { PersonStoreModule } from 'src/store/Person/person.module';
     ButtonModule,
     StoreModule.forRoot(),
     EffectsModule.forRoot(),
-    PersonStoreModule
+    PersonStoreModule,
+    CalendarModule,
+    InputTextModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

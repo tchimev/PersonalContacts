@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable, lastValueFrom } from 'rxjs';
+import { Observable } from 'rxjs';
 import { getPersons } from 'src/store/Person/person.action';
 import { IPerson } from 'src/store/Person/person.model';
 import { selectPersonIsLoading, selectPersonsList } from 'src/store/Person/person.selector';
@@ -15,12 +15,12 @@ export class PersonsOverviewComponent implements OnInit {
   public isLoading: Observable<boolean>;
   public selectedPerson: IPerson;
   
-  constructor(private readonly store: Store) { }
+  constructor(private readonly _store: Store) { }
 
   ngOnInit(): void {
-    this.store.dispatch(getPersons());
+    this._store.dispatch(getPersons());
 
-    this.personList = this.store.pipe(select(selectPersonsList));
-    this.isLoading = this.store.pipe(select(selectPersonIsLoading));
+    this.personList = this._store.pipe(select(selectPersonsList));
+    this.isLoading = this._store.pipe(select(selectPersonIsLoading));
   }
 }

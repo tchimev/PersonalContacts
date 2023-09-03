@@ -1,1 +1,76 @@
-<p>person-add-edit works!</p>
+<form [formGroup]="form">
+  <h4>New contact</h4>
+  <div class="card p-2">
+    <div class="row">
+      <div class="col-6">
+        <label for="first-name" class="form-label">First Name: </label>
+        <input
+          pInputText
+          class="form-control"
+          id="first-name"
+          type="text"
+          formControlName="firstName"
+        />
+      </div>
+
+      <div class="col-6">
+        <label for="last-name" class="form-label">Last Name: </label>
+        <input
+          pInputText
+          id="last-name"
+          class="form-control"
+          type="text"
+          formControlName="surname"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row w-50 p-0 mx-0">
+        <div class="col-12">
+          <label>Birth Date: </label>
+        </div>
+        <div class="col-12">
+          <p-calendar formControlName="birthDate"></p-calendar>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <label for="phone-num" class="form-label">Phone Number: </label>
+        <input
+          pInputText
+          id="phone-num"
+          class="form-control"
+          type="text"
+          formControlName="phoneNumber"
+        />
+      </div>
+      <div class="col-6">
+        <label for="iban" class="form-label">IBAN: </label>
+        <input
+          pInputText
+          id="iban"
+          type="text"
+          formControlName="iban"
+          class="form-control"
+        />
+      </div>
+    </div>
+
+    <label class="form-label mt-3">Address</label>
+    <div class="card p-3">
+      <label for="country">Country: </label>
+      <input pInputText id="country" type="text" formControlName="country" />
+
+      <label for="city">City: </label>
+      <input pInputText id="city" type="text" formControlName="city" />
+
+      <label for="street">Street: </label>
+      <input pInputText id="street" type="text" formControlName="street" />
+
+      <label for="zip">Zip Code: </label>
+      <input pInputText id="zip" type="text" formControlName="zipCode" />
+    </div>
+    <p-button label="Save" class="pt-2" (onClick)="submit()"></p-button>
+  </div>
+</form>
