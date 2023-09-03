@@ -25,6 +25,7 @@ export class PersonAddEditComponent implements OnInit {
     country: ['', Validators.required],
     zipCode: [''],
   });
+  public isEdit = false;
   private _personId: number = 0;
 
   constructor(
@@ -37,11 +38,13 @@ export class PersonAddEditComponent implements OnInit {
   ngOnInit(): void {
     this._route.params.subscribe((params) => {
       this._personId = params.id;
+      this.isEdit = this._personId > 0;
       if (this._personId) {
         this._store
           .select(selectPersonById(this._personId))
           .subscribe((person) => {
             this.form.patchValue(person);
+            this.form.patchValue({birthDate: new Date(person?.birthDate)})
           });
       }
     });
