@@ -11,7 +11,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { PersonStoreModule } from 'src/store/Person/person.module';
+import { PersonStoreModule } from 'src/store/person/person.module';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,7 +19,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ErrorInterceptor } from 'src/shared/error.interceptor';
-import { globalErrorReducer } from 'src/store/Error/error.reducer';
+import { globalErrorReducer } from 'src/store/error/error.reducer';
 
 @NgModule({
   declarations: [

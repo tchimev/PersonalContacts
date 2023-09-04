@@ -4,13 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
-import { removeGlobalError } from 'src/store/Error/error.action';
-import { selectGlobalError } from 'src/store/Error/error.selector';
-import { createPerson, updatePerson } from 'src/store/Person/person.action';
+import { removeGlobalError } from 'src/store/error/error.action';
+import { selectGlobalError } from 'src/store/error/error.selector';
+import { createPerson, updatePerson } from 'src/store/person/person.action';
 import {
   selectPersonById,
   selectPersonIsLoading,
-} from 'src/store/Person/person.selector';
+} from 'src/store/person/person.selector';
 
 @Component({
   selector: 'app-person-add-edit',

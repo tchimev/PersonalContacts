@@ -8,7 +8,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, catchError, throwError } from 'rxjs';
-import { addGlobalError } from 'src/store/Error/error.action';
+import { addGlobalError } from 'src/store/error/error.action';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

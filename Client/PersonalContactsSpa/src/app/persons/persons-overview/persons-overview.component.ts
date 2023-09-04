@@ -2,12 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable, Subscription, map } from 'rxjs';
-import { deletePerson, getPersons } from 'src/store/Person/person.action';
-import { IPerson } from 'src/store/Person/person.model';
+import { deletePerson, getPersons } from 'src/store/person/person.action';
+import { IPerson } from 'src/store/person/person.model';
 import {
   selectPersonIsLoading,
   selectPersonsList,
-} from 'src/store/Person/person.selector';
+} from 'src/store/person/person.selector';
 
 @Component({
   selector: 'app-persons-overview',
