@@ -32,7 +32,7 @@
       <ng-template pTemplate="body" let-person>
         <tr [pSelectableRow]="person">
           <td>{{ person.surname }}, {{ person.firstName }}</td>
-          <td>{{ person.birthDate | date : "dd/MM/yyyy" }}</td>
+          <td>{{ person.birthDate + 'Z' | date : "dd/MM/yyyy" }}</td>
           <td>{{ person.country }}</td>
           <td>{{ person.city }}</td>
           <td>{{ person.street }}</td>
